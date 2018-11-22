@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">CalorieCountdown</string>
+
+    <string name="user_data_preferences">UserDataPrefs</string>
+
+    <!-- Shared Preferences Keys -->
+    <string name="calories_left_key">CaloriesLeft</string>
+    <string name="calories_total">TotalCalories</string>
+    <string name="key_starting_weight">StartWeight</string>
+    <string name="key_goal_weight">GoalWeight</string>
+    <string name="key_current_weight">CurrentWeight</string>
+
+    <string name="starting_weight">Starting Weight</string>
+    <string name="current_weight">Current Weight</string>
+    <string name="goal_weight">Goal Weight</string>
+    <string name="log">Log</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- Buttons -->
+    <string name="record_data">Record Progress</string>
+    <string name="begin_journey">Begin Journey</string>
+
+    <!-- Add Record Dialog -->
+    <string name="dialog_title_record_data">Enter new weight</string>
+</resources>
