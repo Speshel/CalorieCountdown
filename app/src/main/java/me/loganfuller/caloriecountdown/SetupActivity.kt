@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.preference.PreferenceManager
 import kotlinx.android.synthetic.main.activity_setup.*
 
 class SetupActivity : AppCompatActivity() {
@@ -18,8 +19,7 @@ class SetupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setup)
 
-        val sharedPrefs = applicationContext.getSharedPreferences(getString(R.string.user_data_preferences), Context.MODE_PRIVATE)
-
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this)
         btnStart.setOnClickListener {
             if(!txtStartingWeight.text!!.isEmpty()) {
                 val startingWeight = Integer.parseInt(txtStartingWeight.text.toString())
@@ -35,7 +35,16 @@ class SetupActivity : AppCompatActivity() {
                 checkGoalWeight = true
             }
             if(checkStartingWeight && checkGoalWeight) {
-                startActivity(Intent(this, MainActivity::class.java))
+                if(Integer.parseInt(txtGoalWeight.text.toString()) < Integer.parseInt(txtStartingWeight.text.toString())) {
+                    goalWeightLayout.error = null
+                    sharedPrefs.edit().putBoolean(getString(R.string.key_setup_completed), true).apply()
+                    val intent = Intent(this@SetupActivity, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(intent)
+                    finish()
+                } else {
+                    goalWeightLayout.error = getString(R.string.error_higher_goal_weight)
+                }
             }
         }
     }

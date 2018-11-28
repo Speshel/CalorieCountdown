@@ -3,12 +3,16 @@
 
     <string name="user_data_preferences">UserDataPrefs</string>
 
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
     <!-- Shared Preferences Keys -->
     <string name="calories_left_key">CaloriesLeft</string>
     <string name="calories_total">TotalCalories</string>
     <string name="key_starting_weight">StartWeight</string>
     <string name="key_goal_weight">GoalWeight</string>
     <string name="key_current_weight">CurrentWeight</string>
+    <string name="key_setup_completed">SetupComplete</string>
 
     <string name="starting_weight">Starting Weight</string>
     <string name="current_weight">Current Weight</string>
@@ -19,7 +23,20 @@
     <!-- Buttons -->
     <string name="record_data">Record Progress</string>
     <string name="begin_journey">Begin Journey</string>
+    <string name="settings_button">Settings</string>
 
     <!-- Add Record Dialog -->
     <string name="dialog_title_record_data">Enter new weight</string>
+
+    <!-- Congratulations Dialog -->
+    <string name="dialog_title_congratulations">Congratulations!</string>
+    <string name="dialog_message_congratulations">You have completed your journey. Would you like to start a new one?</string>
+
+    <!-- EditText Errors -->
+    <string name="error_higher_goal_weight">Please enter a goal weight lower than your starting weight.</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Settings -->
+    <string name="pref_reset">Reset Data</string>
+    <string name="pref_summary_reset">This will erase all your progress and prompt you to create a new goal.</string>
 </resources>
