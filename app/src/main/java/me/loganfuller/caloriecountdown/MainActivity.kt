@@ -18,6 +18,8 @@ import java.text.NumberFormat
 import android.content.Intent
 import android.widget.Toast
 import android.content.SharedPreferences
+import android.opengl.Visibility
+import android.view.View
 import androidx.preference.PreferenceManager.getDefaultSharedPreferences
 
 
@@ -87,7 +89,22 @@ class MainActivity : AppCompatActivity() {
 
         txtCaloriesCounter.text = NumberFormat.getInstance().format(caloriesToBurn).toString()
 
+        btnShare.setOnClickListener {
+            val formattedCaloriesBurnt = NumberFormat.getInstance().format(caloriesBurnt).toString()
+            val sendIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_TEXT,
+                    "I have burnt $formattedCaloriesBurnt calories using the Calorie Countdown application. Check the application out and keep track of how many calories you have to burn to meet your weight-loss goal!"
+                )
+                type = "text/plain"
+            }
+            val shareIntent = Intent.createChooser(sendIntent, null)
+            startActivity(shareIntent)
+        }
+
         if(caloriesToBurn <= 0) {
+            btnRestart.visibility = View.VISIBLE
+            btnRecord.visibility = View.INVISIBLE
             viewKonfetti.build()
                 .addColors(Color.YELLOW, Color.GREEN, Color.MAGENTA)
                 .setDirection(0.0, 359.0)
@@ -110,6 +127,14 @@ class MainActivity : AppCompatActivity() {
                 negativeButton(R.string.no) { dialog ->
                     dialog.dismiss()
                 }
+            }
+            btnRestart.setOnClickListener {
+                btnRestart.visibility = View.INVISIBLE
+                btnRecord.visibility = View.VISIBLE
+                sharedPrefs.edit().clear().apply()
+                val i = Intent(baseContext, InitActivity::class.java)
+                i.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(i)
             }
         }
     }

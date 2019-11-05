@@ -22,6 +22,7 @@
 
     <!-- Buttons -->
     <string name="record_data">Record Progress</string>
+    <string name="restart_journey">Begin New Journey</string>
     <string name="begin_journey">Begin Journey</string>
     <string name="settings_button">Settings</string>
 
